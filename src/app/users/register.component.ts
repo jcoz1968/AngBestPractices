@@ -34,6 +34,10 @@ export class RegisterComponent implements OnInit {
 
   registerUser(user) {
     this.saving = true;
+    this.saveAndRedirect(user);
+  }
+
+  private saveAndRedirect(user) {
     this.userRepository.saveUser(user)
       .subscribe(
         null,

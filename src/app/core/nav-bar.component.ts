@@ -4,14 +4,8 @@ import { AccountMenuComponent } from './account-menu.component';
 
 @Component({
   selector: 'wb-nav-bar',
-  styleUrls: [`./nav-bar.component.css`],
-  template: `
-    <div class="nav-bar">
-      <img class="logo" src="/assets/images/whitebeard-logo.png" alt="Whitebeard Logo" />
-      <div class="nav-item"><a [routerLink]="['/catalog']">Catalog</a></div>
-      <account-menu [user]="currentUser" (signedOut)="handleSignOut()"></account-menu>
-    </div>
-`
+  styleUrls: ['./nav-bar.component.css'],
+  templateUrl: './nav-bar.component.html'
 })
 
 export class NavBarComponent  {

@@ -8,11 +8,11 @@ import { appRoutes } from './routes'
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar.component';
 import { CatalogComponent } from './catalog/catalog.component';
-import { RegisterComponent } from './users/sign-in.component';
+import { RegisterComponent } from './users/register.component';
 import { SignInComponent } from './users/sign-in.component';
 import { LoadingComponent } from './components/loading-spinner.component';
 import { DataRepositoryService } from './services/data-repository.service';
-import { AccountMenuComponent } from './account-menu.component';
+import { AccountMenuComponent } from './users/account-menu.component';
 
 @NgModule({
   imports:      [

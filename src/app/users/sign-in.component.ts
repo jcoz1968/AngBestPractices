@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 
-import { DataRepositoryService } from '../services/data-repository'
+import { DataRepositoryService } from '../services/data-repository.service'
 
 @Component({
   styles: [`
@@ -73,11 +73,11 @@ import { DataRepositoryService } from '../services/data-repository'
   `
 })
 export class SignInComponent {
-  credentials:any = {};
+  credentials: any = {};
 
-  constructor(private router:Router, private dataRepository:DataRepositoryService) { }
+  constructor(private router: Router, private dataRepository: DataRepositoryService) { }
 
-  signIn(credentials:any) {
+  signIn(credentials: any) {
     this.dataRepository.signIn(credentials)
       .subscribe(
         null,
@@ -92,19 +92,19 @@ export class SignInComponent {
 }
 
 @Component({
-  styleUrls: ['../styles/register.css'],
-  templateUrl: '../templates/register.html'
+  styleUrls: ['./register.component.css'],
+  templateUrl: '../templates/register.component.html'
 })
 
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   firstName: FormControl;
   lastName: FormControl;
   email: FormControl;
   password: FormControl;
-  saving:boolean=false;
+  saving: boolean = false;
 
-  constructor(private router:Router, private dataRepository:DataRepositoryService) { }
+  constructor(private router: Router, private dataRepository: DataRepositoryService) { }
 
   ngOnInit() {
     this.firstName = new FormControl('', Validators.required);
@@ -121,11 +121,11 @@ export class RegisterComponent {
   }
 
   registerUser(user) {
-    this.saving=true;
+    this.saving = true;
     this.dataRepository.saveUser(user)
       .subscribe(
         null,
-        ()=>this.saving=false,
+        () => this.saving = false,
         () => this.router.navigate(['/catalog']));
   }
 

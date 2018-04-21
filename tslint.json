@@ -51,7 +51,7 @@
     "no-empty-interface": true,
     "no-eval": true,
     "no-inferrable-types": [
-      true,
+      false,
       "ignore-params"
     ],
     "no-misused-new": true,
@@ -73,7 +73,7 @@
       "check-else",
       "check-whitespace"
     ],
-    "prefer-const": true,
+    "prefer-const": false,
     "quotemark": [
       true,
       "single"
@@ -114,12 +114,12 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "app",
       "kebab-case"
     ],
-    "use-input-property-decorator": true,
+    "use-input-property-decorator": false,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
     "no-input-rename": true,

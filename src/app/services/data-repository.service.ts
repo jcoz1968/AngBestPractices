@@ -4,19 +4,21 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataRepositoryService {
-  currentUser:any;
+  currentUser: any;
 
   constructor() {}
 
-  getCatalog():Observable<any[]> {
+  getCatalog(): Observable<any[]> {
     const subject = new Subject<any>();
-    const currentUser = this.currentUser || {classes:[]};
+    const currentUser = this.currentUser || { classes: [] };
     const catalogWithEnrollmentStatus =
       COURSE_CATALOG.map(catalogClass => {
-        let enrolled = {enrolled: currentUser.classes.includes(catalogClass.classId)};
+        let enrolled = { enrolled: currentUser.classes.includes(catalogClass.classId) };
         return Object.assign(catalogClass, enrolled);
       });
-    setTimeout(() => {subject.next(catalogWithEnrollmentStatus); subject.complete();}, 200);
+    setTimeout(() => {
+      subject.next(catalogWithEnrollmentStatus); subject.complete();
+    }, 200);
 
     return subject;
   }
@@ -29,11 +31,13 @@ export class DataRepositoryService {
   }
 
   enroll(classId): Observable<any> {
-    if (!this.currentUser)
+    if (!this.currentUser) {
       return Observable.throw('User not signed in');
+    }
 
-    if (this.currentUser.classes.includes[classId])
+    if (this.currentUser.classes.includes[classId]) {
       return Observable.throw('Already enrolled');
+    }
 
     this.currentUser.classes.push(classId);
 
@@ -41,11 +45,13 @@ export class DataRepositoryService {
   }
 
   drop(classId): Observable<any> {
-    if (!this.currentUser)
+    if (!this.currentUser) {
       return Observable.throw('User not signed in');
+    }
 
-    if (!this.currentUser.classes.includes(classId))
+    if (!this.currentUser.classes.includes(classId)) {
       return Observable.throw('Not enrolled');
+    }
 
     this.currentUser.classes = this.currentUser.classes.filter(c => c.classId !== classId);
 
@@ -53,11 +59,11 @@ export class DataRepositoryService {
   }
 
   signIn(credentials): Observable<any> {
-    //Never, ever check credentials in client-side code.
-    //This code is only here to supply a fake endpoint for signing in.
-    if (credentials.email !== 'me@whitebeards.edu' || credentials.password !== 'super-secret')
+    // Never, ever check credentials in client-side code.
+    // This code is only here to supply a fake endpoint for signing in.
+    if (credentials.email !== 'me@whitebeards.edu' || credentials.password !== 'super-secret') {
       return Observable.throw('Invalid login');
-
+    }
     this.currentUser = {
       userId: 'e61aebed-dbc5-437a-b514-02b8380d8efc',
       firstName: 'Jim',
@@ -80,22 +86,22 @@ const COURSES = [{
   courseName: 'Ancient History of Magic',
   creditHours: 4,
   description: '...'
-},{
+}, {
   courseNumber: 'CH101',
   courseName: 'Intro to Charms',
   creditHours: 4,
   description: '...'
-},{
+}, {
   courseNumber: 'CH205',
   courseName: 'Creating Advanced Charms',
   creditHours: 4,
   description: '...'
-},{
+}, {
   courseNumber: 'SP101',
   courseName: 'Intro Spell Casting',
   creditHours: 4,
   description: '...'
-},{
+}, {
   courseNumber: 'SP201',
   courseName: 'Advanced Spell Casting',
   creditHours: 4,
@@ -130,49 +136,49 @@ const COURSE_CATALOG = [{
   seatsAvailable: 28,
   days: 'THF',
   time: 11
-},{
+}, {
   classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
   course: COURSES[2],
   professor: 'Meriel Dufaux',
   seatsAvailable: 28,
   days: 'THF',
   time: 11
-},{
+}, {
   classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
   course: COURSES[3],
   professor: 'Adranus Klaus',
   seatsAvailable: 28,
   days: 'THF',
   time: 11
-},{
+}, {
   classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
   course: COURSES[4],
   professor: 'Ragnvald Graupnar',
   seatsAvailable: 28,
   days: 'THF',
   time: 11
-},{
+}, {
   classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
   course: COURSES[5],
   professor: 'Philosifus Siebrand',
   seatsAvailable: 28,
   days: 'THF',
   time: 11
-},{
+}, {
   classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
   course: COURSES[2],
   professor: 'Phoebe Chabon',
   seatsAvailable: 28,
   days: 'THF',
   time: 11
-},{
+}, {
   classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
   course: COURSES[3],
   professor: 'Sycily Soule',
   seatsAvailable: 28,
   days: 'THF',
   time: 11
-},{
+}, {
   classId: '7277956e-795f-4c0f-9861-cf03635df5ea',
   course: COURSES[4],
   professor: 'Heldebald Cincebeaux',

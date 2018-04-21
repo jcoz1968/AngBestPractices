@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
-
-import { DataRepositoryService } from "../services/data-repository"
+import { Component, OnInit } from '@angular/core';
+import { DataRepositoryService } from '../services/data-repository.service'
 
 @Component({
-  styleUrls: ['../styles/catalog.css'],
-  templateUrl: '../templates/catalog.html'
+  styleUrls: ['./catalog.component.css'],
+  templateUrl: './catalog.component.html'
 })
-export class CoursesComponent {
-  classes:any[];
-  visibleClasses:any[];
+export class CatalogComponent implements OnInit {
+  classes: any[];
+  visibleClasses: any[];
 
-  constructor(private dataRepository:DataRepositoryService) {}
+  constructor(private dataRepository: DataRepositoryService) {}
 
   ngOnInit() {
     this.dataRepository.getCatalog()
@@ -22,8 +21,10 @@ export class CoursesComponent {
     this.dataRepository.enroll(classToEnroll.classId)
       .subscribe(
         null,
-        (err) => {console.error(err); classToEnroll.processing = false}, //add a toast message or something
-        () => {classToEnroll.processing = false; classToEnroll.enrolled=true;},
+        (err) => {console.error(err); classToEnroll.processing = false}, // add a toast message or something
+          () => {
+            classToEnroll.processing = false; classToEnroll.enrolled = true;
+        },
       );
   }
 
@@ -32,14 +33,17 @@ export class CoursesComponent {
     this.dataRepository.drop(classToDrop.classId)
       .subscribe(
         null,
-        (err) => { console.error(err); classToDrop.processing = false}, //add a toast message or something
-        () => {classToDrop.processing = false; classToDrop.enrolled=false;}
+        (err) => { console.error(err); classToDrop.processing = false}, // add a toast message or something
+        () => {
+          classToDrop.processing = false; classToDrop.enrolled = false;
+        }
       );
   }
 
   applyFilter(filter) {
-    if (!filter)
+    if (!filter) {
       return this.visibleClasses = this.classes;
+    }
 
     if (filter === 'GEN') {
       return this.visibleClasses = this.classes.filter(c =>

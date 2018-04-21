@@ -1,18 +1,18 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 
 import { appRoutes } from './routes'
-import { AppComponent }  from './components/app';
-import { NavBarComponent }  from './components/nav-bar';
-import { CoursesComponent } from "./components/courses";
-import { RegisterComponent } from "./components/sign-in";
-import { SignInComponent } from "./components/sign-in";
-import { LoadingComponent } from "./components/loading-spinner";
-import { DataRepositoryService } from "./services/data-repository"
-import { AccountMenuComponent } from "./components/account-menu";
+import { AppComponent } from './app.component';
+import { NavBarComponent } from './nav-bar.component';
+import { CatalogComponent } from './catalog/catalog.component';
+import { RegisterComponent } from './users/sign-in.component';
+import { SignInComponent } from './users/sign-in.component';
+import { LoadingComponent } from './components/loading-spinner.component';
+import { DataRepositoryService } from './services/data-repository.service';
+import { AccountMenuComponent } from './account-menu.component';
 
 @NgModule({
   imports:      [
@@ -25,7 +25,7 @@ import { AccountMenuComponent } from "./components/account-menu";
   declarations: [
     AppComponent,
     NavBarComponent,
-    CoursesComponent,
+    CatalogComponent,
     RegisterComponent,
     SignInComponent,
     LoadingComponent,

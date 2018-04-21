@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { CatalogRepositoryService } from '../catalog/catalog-repository.service';
 import { UserRepositoryService } from '..//services/user-repository.service';
 
@@ -12,14 +13,14 @@ export class CatalogComponent implements OnInit {
   visibleClasses: any[];
   currentUser: any;
 
-  constructor(private catalogRepository: CatalogRepositoryService, private userRepository: UserRepositoryService) {}
+  constructor(private catalogRepository: CatalogRepositoryService, public userRepository: UserRepositoryService) {}
 
   ngOnInit() {
+    // this.currentUser = this.userRepository.currentUser;
     this.catalogRepository.getCatalog()
       .subscribe(classes => {
         this.classes = classes; this.applyFilter('')
       });
-    this.currentUser = this.userRepository.currentUser;
   }
 
   enroll(classToEnroll) {
@@ -50,14 +51,20 @@ export class CatalogComponent implements OnInit {
     if (!filter) {
       return this.visibleClasses = this.classes;
     }
-
     if (filter === 'GEN') {
-      return this.visibleClasses = this.classes.filter(c =>
-        !c.course.courseNumber.startsWith('CH') &&
-        !c.course.courseNumber.startsWith('PO') &&
-        !c.course.courseNumber.startsWith('SP'));
+      return this.showOnlyGeneralCourses();
     }
-
-    return this.visibleClasses = this.classes.filter(c => c.course.courseNumber.startsWith(filter));
+    return this.visibleClasses = this.classes
+      .filter(c =>
+        c.course.courseNumber.startsWith(filter)
+      );
   }
+
+  showOnlyGeneralCourses() {
+    this.visibleClasses = this.classes.filter(c =>
+      !c.course.courseNumber.startsWith('CH') &&
+      !c.course.courseNumber.startsWith('PO') &&
+      !c.course.courseNumber.startsWith('SP'));
+  }
+
 }

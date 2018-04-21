@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+
 import { UserRepositoryService } from '../services/user-repository.service'
 
 @Component({

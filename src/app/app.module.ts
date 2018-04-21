@@ -11,7 +11,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { RegisterComponent } from './users/register.component';
 import { SignInComponent } from './users/sign-in.component';
 import { LoadingComponent } from './components/loading-spinner.component';
-import { UserRepositoryService } from './users/user-repository.service';
+import { UserRepositoryService } from './services/user-repository.service';
 import { CatalogRepositoryService } from './catalog/catalog-repository.service';
 import { AccountMenuComponent } from './users/account-menu.component';
 

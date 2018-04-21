@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogRepositoryService } from '../catalog/catalog-repository.service';
-import { UserRepositoryService } from './../users/user-repository.service';
+import { UserRepositoryService } from '..//services/user-repository.service';
 
 
 @Component({
@@ -10,12 +10,16 @@ import { UserRepositoryService } from './../users/user-repository.service';
 export class CatalogComponent implements OnInit {
   classes: any[];
   visibleClasses: any[];
+  currentUser: any;
 
   constructor(private catalogRepository: CatalogRepositoryService, private userRepository: UserRepositoryService) {}
 
   ngOnInit() {
     this.catalogRepository.getCatalog()
-      .subscribe(classes => { this.classes = classes; this.applyFilter('')});
+      .subscribe(classes => {
+        this.classes = classes; this.applyFilter('')
+      });
+    this.currentUser = this.userRepository.currentUser;
   }
 
   enroll(classToEnroll) {

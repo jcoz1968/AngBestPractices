@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 
-import { UserRepositoryService } from '../services/user-repository.service'
+import { UserRepositoryService } from '../core/user-repository.service'
 
 @Component({
   styles: [`
@@ -55,13 +55,13 @@ import { UserRepositoryService } from '../services/user-repository.service'
       <form #signInForm="ngForm" (ngSubmit)="signIn(signInForm.value)" autocomplete="off" novalidate>
         <div class="form-group" [ngClass]="{ 'error' : signInForm.controls.email?.invalid && signInForm.controls.email?.dirty }">
           <label for="email">Email:</label>
-          <em *ngIf="signInForm.controls.email?.invalid && signInForm.controls.email?.dirty">Required</em>
-          <input [(ngModel)]="credentials.email" required name="email" id="email" type="text" placeholder="Email..." />
+          <em *ngIf="email?.invalid && email?.dirty">Required</em>
+          <input [(ngModel)]="credentials.email" required name="email" id="email" #email="ngModel" type="text" placeholder="Email..." />
         </div>
         <div class="form-group" [ngClass]="{ 'error' : signInForm.controls.password?.invalid && signInForm.controls.password?.dirty }">
           <label for="password">Password:</label>
-          <em *ngIf="signInForm.controls.password?.invalid && signInForm.controls.password?.dirty">Required</em>
-          <input [(ngModel)]="credentials.password" required name="password" id="password" type="password" placeholder="Password..." />
+          <em *ngIf="password?.invalid && password?.dirty">Required</em>
+          <input [(ngModel)]="credentials.password" required name="password" #password="ngModel" id="password" type="password" placeholder="Password..." />
         </div>
         <div class="form-group buttons" >
           <button type="button" (click)="cancel()">Cancel</button>

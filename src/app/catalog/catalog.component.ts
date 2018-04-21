@@ -54,5 +54,4 @@ export class CatalogComponent implements OnInit {
   applyFilter(filter) {
     this.visibleClasses = this.filterService.filterClasses(filter, this.classes)
   }
-
 }

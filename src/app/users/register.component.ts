@@ -37,6 +37,10 @@ export class RegisterComponent implements OnInit {
     this.saveAndRedirect(user);
   }
 
+  cancel() {
+    this.router.navigate(['/']);
+  }
+
   private saveAndRedirect(user) {
     this.userRepository.saveUser(user)
       .subscribe(
@@ -45,7 +49,4 @@ export class RegisterComponent implements OnInit {
         () => this.router.navigate(['/catalog']));
   }
 
-  cancel() {
-    this.router.navigate(['/']);
-  }
 }

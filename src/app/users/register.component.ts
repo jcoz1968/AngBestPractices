@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
-import { DataRepositoryService } from '../services/data-repository.service'
-
+import { UserRepositoryService } from '../users/user-repository.service'
 
 @Component({
   styleUrls: ['./register.component.css'],
@@ -17,7 +16,7 @@ export class RegisterComponent implements OnInit {
   password: FormControl;
   saving: boolean = false;
 
-  constructor(private router: Router, private dataRepository: DataRepositoryService) { }
+  constructor(private router: Router, private userRepository: UserRepositoryService) { }
 
   ngOnInit() {
     this.firstName = new FormControl('', Validators.required);
@@ -35,7 +34,7 @@ export class RegisterComponent implements OnInit {
 
   registerUser(user) {
     this.saving = true;
-    this.dataRepository.saveUser(user)
+    this.userRepository.saveUser(user)
       .subscribe(
         null,
         () => this.saving = false,

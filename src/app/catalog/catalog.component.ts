@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CatalogRepositoryService } from '../catalog/catalog-repository.service';
 import { UserRepositoryService } from '../core/user-repository.service';
 import { FilterClassesService } from './filter-classes.service';
-
+import { OrderByPipe } from './order-by.pipe';
 
 @Component({
   styleUrls: ['./catalog.component.css'],
@@ -25,6 +25,17 @@ export class CatalogComponent implements OnInit {
         this.classes = classes;
         this.applyFilter('');
        });
+  }
+
+  mutateFirstProfessor() {
+    this.visibleClasses[0].professor = 'Zebraman';
+  }
+
+  updateFirstProfessor() {
+    this.visibleClasses = [
+      Object.assign(this.visibleClasses[0], { professor: 'Zebraman' }),
+      ...this.visibleClasses.slice(1)
+    ];
   }
 
   enroll(classToEnroll) {

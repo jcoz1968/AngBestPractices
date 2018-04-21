@@ -5,6 +5,7 @@ import { SharedModule } from './../shared/shared.module';
 import { CatalogComponent } from './catalog.component';
 import { CatalogRepositoryService } from './catalog-repository.service';
 import { FilterClassesService } from './filter-classes.service';
+import { OrderByPipe } from './order-by.pipe';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { FilterClassesService } from './filter-classes.service';
   ],
   exports: [ CatalogComponent ],
   declarations: [
-    CatalogComponent
+    CatalogComponent,
+    OrderByPipe
   ],
   providers: [ CatalogRepositoryService, FilterClassesService ],
   bootstrap: []
